@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Analyst - Probability & Strategy Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="content-wrapper">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-left">
+                    <div class="spade-icon">♠</div>
+                    <div>
+                        <h1 class="main-title">BLACKJACK ANALYST</h1>
+                        <p class="subtitle">Probability & Strategy Calculator</p>
+                    </div>
+                </div>
+                <div class="combinations-badge">
+                    <div class="badge-label">Total Combinations</div>
+                    <div class="badge-value">1,326</div>
+                </div>
+            </div>
+
+            <div class="main-grid">
+                <!-- Left Panel - Settings -->
+                <div class="left-panel">
+                    <!-- Table Rules -->
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="icon">♣</span>
+                            <h2>Table Rules</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label>Player Stands On</label>
+                                <select id="playerStands" class="select-input">
+                                    <option value="12">Hard 12</option>
+                                    <option value="13">Hard 13</option>
+                                    <option value="14">Hard 14</option>
+                                    <option value="15">Hard 15</option>
+                                    <option value="16">Hard 16</option>
+                                    <option value="17" selected>Hard 17 (Std)</option>
+                                    <option value="18">Hard 18</option>
+                                    <option value="19">Hard 19</option>
+                                    <option value="20">Hard 20</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Dealer Stands On</label>
+                                <select id="dealerStands" class="select-input">
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17" selected>17 (Std)</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                </select>
+                            </div>
+
+                            <div class="toggle-group">
+                                <div>
+                                    <div class="toggle-label">Dealer Hits Soft 17</div>
+                                    <div class="toggle-desc">Increases house edge slightly</div>
+                                </div>
+                                <button id="dealerHitsSoft17Toggle" class="toggle-button active">
+                                    <div class="toggle-slider"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Game Mode -->
+                    <div class="card">
+                        <div class="card-label">Game Mode</div>
+                        <div class="game-mode-buttons">
+                            <button id="classicMode" class="mode-button">
+                                <div class="mode-title">Classic</div>
+                                <div class="mode-desc">Standard Rules</div>
+                            </button>
+                            <button id="moddedMode" class="mode-button active">
+                                <div class="mode-title">Modded</div>
+                                <div class="mode-desc">5-Card Charlie</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Simulation Controls -->
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="icon">📊</span>
+                            <h2>Simulation</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label>Simulations per Hand</label>
+                                <select id="simulationSelect" class="select-input">
+                                    <option value="100">100 (Fast)</option>
+                                    <option value="1000" selected>1,000 (Standard)</option>
+                                    <option value="10000">10,000 (Detailed)</option>
+                                    <option value="100000">100,000 (Precise)</option>
+                                    <option value="custom">Custom Amount...</option>
+                                </select>
+                                <div id="customInputGroup" class="custom-input-group" style="display: none;">
+                                    <input type="number" id="customSimulations" class="text-input" placeholder="Enter custom amount" min="1">
+                                    <button id="backToPresets" class="back-button">← Back to presets</button>
+                                </div>
+                            </div>
+
+                            <button id="runButton" class="run-button">
+                                <span class="button-icon">▶</span>
+                                <span id="runButtonText">Run</span>
+                            </button>
+
+                            <div id="progressContainer" class="progress-container" style="display: none;">
+                                <div class="progress-bar">
+                                    <div id="progressFill" class="progress-fill"></div>
+                                </div>
+                                <div id="progressText" class="progress-text">Processing 0%</div>
+                            </div>
+
+                            <button id="exportButton" class="export-button" style="display: none;">
+                                <span class="button-icon">⬇</span>
+                                Export CSV
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Best Hand -->
+                    <div id="bestHandCard" class="card best-hand-card" style="display: none;">
+                        <div class="card-header">
+                            <span class="icon">🏆</span>
+                            <h2>Best Performing Hand</h2>
+                        </div>
+                        <div class="best-hand-content">
+                            <div class="card-display">
+                                <div id="bestCard1" class="card-icon">A♠</div>
+                                <div id="bestCard2" class="card-icon">K♠</div>
+                            </div>
+                            <div>
+                                <div id="bestWinRate" class="best-win-rate">90.4%</div>
+                                <div id="bestWinCount" class="best-win-count">904 / 1000 Wins</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notice -->
+                    <div class="notice-card">
+                        <div id="noticeTitle" class="notice-title">5-Card Charlie Active</div>
+                        <div id="noticeDesc" class="notice-desc">Five Card Charlie is enabled. Win 5-card non-bust hands.</div>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Results -->
+                <div class="right-panel">
+                    <div class="results-card">
+                        <div class="results-header">
+                            <h2 class="results-title">DETAILED RESULTS</h2>
+                            <div id="resultsInfo" class="results-info"></div>
+                        </div>
+
+                        <div class="results-body">
+                            <div id="emptyState" class="empty-state">
+                                <div class="empty-title">No simulation data yet. Click "Run" to start.</div>
+                                <div class="empty-desc">Configure your table rules and game mode, then run the Monte Carlo simulation to analyze all 1,326 possible starting hand combinations.</div>
+                            </div>
+
+                            <div id="resultsTable" style="display: none;">
+                                <table class="results-table">
+                                    <thead>
+                                        <tr>
+                                            <th>HAND</th>
+                                            <th class="text-right">WIN %</th>
+                                            <th class="text-right">LOSS %</th>
+                                            <th class="text-right">TIE %</th>
+                                            <th class="text-right">WIN #</th>
+                                            <th class="text-right">LOSS #</th>
+                                            <th class="text-right">TIE #</th>
+                                            <th class="text-right">TOTAL</th>
+                                            <th class="text-right">VISUAL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="resultsTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Info Panels -->
+                    <div class="info-panels">
+                        <div class="info-card">
+                            <div class="info-header">
+                                <span class="icon">Σ</span>
+                                <h3>SIMULATION LOGIC</h3>
+                            </div>
+                            <p class="info-text">Using <span class="highlight">Monte Carlo</span> method. For every possible starting hand (1,326 combinations), we simulate <span id="simulationCount">1,000</span> complete games.</p>
+                            <p class="info-subtext">The deck is reshuffled every game to ensure statistical independence.</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-header">
+                                <span class="icon">📋</span>
+                                <h3>ACTIVE RULESET</h3>
+                            </div>
+                            <div class="ruleset-list">
+                                <div class="ruleset-item">Player Stands: <span id="rulePlayerStands">17</span></div>
+                                <div class="ruleset-item">Dealer Stands: <span id="ruleDealerStands">17</span></div>
+                                <div class="ruleset-item">Dealer Hits Soft 17: <span id="ruleSoft17">Yes</span></div>
+                                <div class="ruleset-item">5-Card Charlie: <span id="ruleCharlie">Enabled</span></div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-header">
+                                <span class="icon">📐</span>
+                                <h3>FORMULA</h3>
+                            </div>
+                            <div class="formula-box">Win Rate = (Wins / Total) × 100%</div>
+                            <ul class="formula-list">
+                                <li>Win: Player &gt; Dealer OR Dealer Busts OR 5-Card Charlie</li>
+                                <li>Loss: Player Busts OR Dealer &gt; Player</li>
+                                <li>Tie: Player == Dealer</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
