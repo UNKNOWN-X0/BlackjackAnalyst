@@ -7,30 +7,40 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="app-container">
-        <div class="content-wrapper">
-            <!-- Header -->
-            <div class="header">
-                <div class="header-left">
-                    <div class="spade-icon">♠</div>
-                    <div>
-                        <h1 class="main-title">BLACKJACK ANALYST</h1>
-                        <p class="subtitle">Probability & Strategy Calculator</p>
-                    </div>
-                </div>
-                <div class="combinations-badge">
-                    <div class="badge-label">Total Combinations</div>
-                    <div class="badge-value">1,326</div>
+    <!-- Top Header Bar -->
+    <div class="top-header-bar">
+        <div class="header-bar-content">
+            <div class="header-bar-left">
+                <svg class="spade-svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C9.5 6 2 10 2 14c0 3 2 5 5 5 1.5 0 3-.5 4-1.5V22h2v-4.5c1 1 2.5 1.5 4 1.5 3 0 5-2 5-5 0-4-7.5-8-10-12z"/>
+                </svg>
+                <div class="header-bar-title">
+                    <h1>BLACKJACK ANALYST</h1>
+                    <p>Probability & Strategy Calculator</p>
                 </div>
             </div>
+            <div class="header-bar-right">
+                <div class="combinations-display">
+                    <span class="combinations-label">TOTAL COMBINATIONS</span>
+                    <span class="combinations-value">1,326</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="app-container">
+        <div class="content-wrapper">
             <div class="main-grid">
                 <!-- Left Panel - Settings -->
                 <div class="left-panel">
                     <!-- Table Rules -->
                     <div class="card">
                         <div class="card-header">
-                            <span class="icon">♣</span>
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
                             <h2>Table Rules</h2>
                         </div>
                         <div class="card-content">
@@ -94,7 +104,11 @@
                     <!-- Simulation Controls -->
                     <div class="card">
                         <div class="card-header">
-                            <span class="icon">📊</span>
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="20" x2="18" y2="10"/>
+                                <line x1="12" y1="20" x2="12" y2="4"/>
+                                <line x1="6" y1="20" x2="6" y2="14"/>
+                            </svg>
                             <h2>Simulation</h2>
                         </div>
                         <div class="card-content">
@@ -114,7 +128,9 @@
                             </div>
 
                             <button id="runButton" class="run-button">
-                                <span class="button-icon">▶</span>
+                                <svg class="button-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
                                 <span id="runButtonText">Run</span>
                             </button>
 
@@ -126,7 +142,11 @@
                             </div>
 
                             <button id="exportButton" class="export-button" style="display: none;">
-                                <span class="button-icon">⬇</span>
+                                <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7 10 12 15 17 10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
                                 Export CSV
                             </button>
                         </div>
@@ -135,7 +155,9 @@
                     <!-- Best Hand -->
                     <div id="bestHandCard" class="card best-hand-card" style="display: none;">
                         <div class="card-header">
-                            <span class="icon">🏆</span>
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
                             <h2>Best Performing Hand</h2>
                         </div>
                         <div class="best-hand-content">
@@ -168,21 +190,45 @@
                         <div class="results-body">
                             <div id="emptyState" class="empty-state">
                                 <div class="empty-title">No simulation data yet. Click "Run" to start.</div>
-                                <div class="empty-desc">Configure your table rules and game mode, then run the Monte Carlo simulation to analyze all 1,326 possible starting hand combinations.</div>
+                                <div class="empty-desc">Configure your table rules and game mode, then run the Monte Carlo simulation to analyze all <span class="highlight">1,326</span> possible starting hand combinations.</div>
                             </div>
 
                             <div id="resultsTable" style="display: none;">
                                 <table class="results-table">
                                     <thead>
                                         <tr>
-                                            <th>HAND</th>
-                                            <th class="text-right">WIN %</th>
-                                            <th class="text-right">LOSS %</th>
-                                            <th class="text-right">TIE %</th>
-                                            <th class="text-right">WIN #</th>
-                                            <th class="text-right">LOSS #</th>
-                                            <th class="text-right">TIE #</th>
-                                            <th class="text-right">TOTAL</th>
+                                            <th class="sortable" data-sort="hand">
+                                                HAND
+                                                <span class="sort-indicator"></span>
+                                            </th>
+                                            <th class="sortable text-right" data-sort="winRate">
+                                                WIN %
+                                                <span class="sort-indicator"></span>
+                                            </th>
+                                            <th class="sortable text-right" data-sort="lossRate">
+                                                LOSS %
+                                                <span class="sort-indicator"></span>
+                                            </th>
+                                            <th class="sortable text-right" data-sort="tieRate">
+                                                TIE %
+                                                <span class="sort-indicator"></span>
+                                            </th>
+                                            <th class="sortable text-right" data-sort="wins">
+                                                WIN #
+                                                <span class="sort-indicator"></span>
+                                            </th>
+                                            <th class="sortable text-right" data-sort="losses">
+                                                LOSS #
+                                                <span class="sort-indicator"></span>
+                                            </th>
+                                            <th class="sortable text-right" data-sort="ties">
+                                                TIE #
+                                                <span class="sort-indicator"></span>
+                                            </th>
+                                            <th class="sortable text-right" data-sort="total">
+                                                TOTAL
+                                                <span class="sort-indicator"></span>
+                                            </th>
                                             <th class="text-right">VISUAL</th>
                                         </tr>
                                     </thead>
@@ -197,16 +243,27 @@
                     <div class="info-panels">
                         <div class="info-card">
                             <div class="info-header">
-                                <span class="icon">Σ</span>
+                                <svg class="icon-svg-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                                </svg>
                                 <h3>SIMULATION LOGIC</h3>
                             </div>
-                            <p class="info-text">Using <span class="highlight">Monte Carlo</span> method. For every possible starting hand (1,326 combinations), we simulate <span id="simulationCount">1,000</span> complete games.</p>
+                            <p class="info-text">Using <span class="highlight">Monte Carlo</span> method. For every possible starting hand (1,326 combinations), we simulate <span id="simulationCount" class="highlight">1,000</span> complete games.</p>
                             <p class="info-subtext">The deck is reshuffled every game to ensure statistical independence.</p>
                         </div>
 
                         <div class="info-card">
                             <div class="info-header">
-                                <span class="icon">📋</span>
+                                <svg class="icon-svg-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                    <polyline points="10 9 9 9 8 9"/>
+                                </svg>
                                 <h3>ACTIVE RULESET</h3>
                             </div>
                             <div class="ruleset-list">
@@ -219,7 +276,10 @@
 
                         <div class="info-card">
                             <div class="info-header">
-                                <span class="icon">📐</span>
+                                <svg class="icon-svg-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="1" x2="12" y2="23"/>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                </svg>
                                 <h3>FORMULA</h3>
                             </div>
                             <div class="formula-box">Win Rate = (Wins / Total) × 100%</div>
