@@ -7,7 +7,9 @@ let state = {
     simulations: 1000,
     customSimulations: '',
     isRunning: false,
-    results: null
+    results: null,
+    sortColumn: 'winRate',
+    sortDirection: 'desc'
 };
 
 // ========== CARD & DECK FUNCTIONS ==========
@@ -227,7 +229,8 @@ async function runSimulation() {
         const tieRate = (ties / total) * 100;
         
         handResults.push({
-            hand: `${hand[0].rank}, ${hand[1].rank}`,
+            hand: `${hand[0].rank}${hand[0].suit} ${hand[1].rank}${hand[1].suit}`,
+            handText: `${hand[0].rank}, ${hand[1].rank}`,
             cards: hand,
             winRate: winRate.toFixed(1),
             lossRate: lossRate.toFixed(1),
@@ -247,13 +250,16 @@ async function runSimulation() {
         }
     }
     
-    // Sort by win rate
-    handResults.sort((a, b) => parseFloat(b.winRate) - parseFloat(a.winRate));
+    // Sort by win rate descending initially
+    state.sortColumn = 'winRate';
+    state.sortDirection = 'desc';
     
     state.results = {
         hands: handResults,
         totalHands: handResults.length,
-        bestHand: handResults[0]
+        bestHand: handResults.reduce((best, hand) => 
+            parseFloat(hand.winRate) > parseFloat(best.winRate) ? hand : best
+        )
     };
     
     progressFill.style.width = '100%';
@@ -261,6 +267,49 @@ async function runSimulation() {
     
     state.isRunning = false;
     updateUI();
+    displayResults();
+}
+
+// ========== SORTING FUNCTION ==========
+function sortResults(column) {
+    if (!state.results) return;
+    
+    // Toggle direction if same column, otherwise default to desc
+    if (state.sortColumn === column) {
+        state.sortDirection = state.sortDirection === 'desc' ? 'asc' : 'desc';
+    } else {
+        state.sortColumn = column;
+        state.sortDirection = 'desc';
+    }
+    
+    const hands = state.results.hands;
+    
+    hands.sort((a, b) => {
+        let aVal, bVal;
+        
+        if (column === 'hand') {
+            aVal = a.handText;
+            bVal = b.handText;
+            const comparison = aVal.localeCompare(bVal);
+            return state.sortDirection === 'desc' ? -comparison : comparison;
+        } else {
+            // Numeric columns
+            if (['winRate', 'lossRate', 'tieRate'].includes(column)) {
+                aVal = parseFloat(a[column]);
+                bVal = parseFloat(b[column]);
+            } else {
+                aVal = a[column];
+                bVal = b[column];
+            }
+            
+            if (state.sortDirection === 'desc') {
+                return bVal - aVal;
+            } else {
+                return aVal - bVal;
+            }
+        }
+    });
+    
     displayResults();
 }
 
@@ -338,6 +387,14 @@ function displayResults() {
     document.getElementById('bestCard2').textContent = `${bestHand.cards[1].rank}${bestHand.cards[1].suit}`;
     document.getElementById('bestWinRate').textContent = `${bestHand.winRate}%`;
     document.getElementById('bestWinCount').textContent = `${bestHand.wins} / ${bestHand.total} Wins`;
+    
+    // Update sort indicators
+    document.querySelectorAll('.sortable').forEach(th => {
+        th.classList.remove('active', 'asc', 'desc');
+        if (th.dataset.sort === state.sortColumn) {
+            th.classList.add('active', state.sortDirection);
+        }
+    });
     
     // Build table
     resultsTableBody.innerHTML = '';
@@ -447,6 +504,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Export Button
     document.getElementById('exportButton').addEventListener('click', exportCSV);
+    
+    // Sortable Headers
+    document.querySelectorAll('.sortable').forEach(th => {
+        th.addEventListener('click', () => {
+            sortResults(th.dataset.sort);
+        });
+    });
     
     // Initial UI update
     updateUI();
