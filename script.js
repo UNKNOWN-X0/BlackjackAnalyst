@@ -424,16 +424,58 @@ function displayResults() {
 function exportCSV() {
     if (!state.results) return;
     
-    let csv = 'Hand,Win %,Loss %,Tie %,Wins,Losses,Ties,Total\n';
+    // Group hands by starting total value
+    const groupedByTotal = {};
+    
     state.results.hands.forEach(hand => {
-        csv += `"${hand.hand}",${hand.winRate},${hand.lossRate},${hand.tieRate},${hand.wins},${hand.losses},${hand.ties},${hand.total}\n`;
+        const startingTotal = getHandValue(hand.cards);
+        
+        if (!groupedByTotal[startingTotal]) {
+            groupedByTotal[startingTotal] = [];
+        }
+        groupedByTotal[startingTotal].push(hand);
+    });
+    
+    // Calculate mean percentages for each group
+    let csv = 'Starting Total,Count,Mean Win %,Mean Loss %,Mean Tie %,Total Wins,Total Losses,Total Ties,Total Simulations\n';
+    
+    // Sort by starting total (4 to 21)
+    const sortedTotals = Object.keys(groupedByTotal).map(Number).sort((a, b) => a - b);
+    
+    sortedTotals.forEach(total => {
+        const hands = groupedByTotal[total];
+        const count = hands.length;
+        
+        let totalWinRate = 0;
+        let totalLossRate = 0;
+        let totalTieRate = 0;
+        let totalWins = 0;
+        let totalLosses = 0;
+        let totalTies = 0;
+        let totalSimulations = 0;
+        
+        hands.forEach(hand => {
+            totalWinRate += parseFloat(hand.winRate);
+            totalLossRate += parseFloat(hand.lossRate);
+            totalTieRate += parseFloat(hand.tieRate);
+            totalWins += hand.wins;
+            totalLosses += hand.losses;
+            totalTies += hand.ties;
+            totalSimulations += hand.total;
+        });
+        
+        const meanWinRate = (totalWinRate / count).toFixed(2);
+        const meanLossRate = (totalLossRate / count).toFixed(2);
+        const meanTieRate = (totalTieRate / count).toFixed(2);
+        
+        csv += `${total},${count},${meanWinRate},${meanLossRate},${meanTieRate},${totalWins},${totalLosses},${totalTies},${totalSimulations}\n`;
     });
     
     const blob = new Blob([csv], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'blackjack-simulation.csv';
+    a.download = 'blackjack-grouped-by-total.csv';
     a.click();
     window.URL.revokeObjectURL(url);
 }
