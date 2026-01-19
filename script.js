@@ -424,14 +424,7 @@ function displayResults() {
 function exportCSV() {
     if (!state.results) return;
     
-    // Original detailed data
-    let csv = 'Hand,Win %,Loss %,Tie %,Wins,Losses,Ties,Total\n';
-    state.results.hands.forEach(hand => {
-        csv += `"${hand.hand}",${hand.winRate},${hand.lossRate},${hand.tieRate},${hand.wins},${hand.losses},${hand.ties},${hand.total}\n`;
-    });
-    
-    // Add separator
-    csv += '\n\n';
+    let csv = '';
     
     // Group hands by starting total value
     const groupedByTotal = {};
@@ -479,6 +472,15 @@ function exportCSV() {
         const meanTieRate = (totalTieRate / count).toFixed(2);
         
         csv += `${total},${count},${meanWinRate},${meanLossRate},${meanTieRate},${totalWins},${totalLosses},${totalTies},${totalSimulations}\n`;
+    });
+    
+    // Add separator
+    csv += '\n\nDETAILED HAND DATA\n';
+    
+    // Original detailed data
+    csv += 'Hand,Win %,Loss %,Tie %,Wins,Losses,Ties,Total\n';
+    state.results.hands.forEach(hand => {
+        csv += `"${hand.hand}",${hand.winRate},${hand.lossRate},${hand.tieRate},${hand.wins},${hand.losses},${hand.ties},${hand.total}\n`;
     });
     
     const blob = new Blob([csv], { type: 'text/csv' });
