@@ -424,6 +424,15 @@ function displayResults() {
 function exportCSV() {
     if (!state.results) return;
     
+    // Original detailed data
+    let csv = 'Hand,Win %,Loss %,Tie %,Wins,Losses,Ties,Total\n';
+    state.results.hands.forEach(hand => {
+        csv += `"${hand.hand}",${hand.winRate},${hand.lossRate},${hand.tieRate},${hand.wins},${hand.losses},${hand.ties},${hand.total}\n`;
+    });
+    
+    // Add separator
+    csv += '\n\n';
+    
     // Group hands by starting total value
     const groupedByTotal = {};
     
@@ -437,7 +446,8 @@ function exportCSV() {
     });
     
     // Calculate mean percentages for each group
-    let csv = 'Starting Total,Count,Mean Win %,Mean Loss %,Mean Tie %,Total Wins,Total Losses,Total Ties,Total Simulations\n';
+    csv += 'GROUPED BY STARTING TOTAL\n';
+    csv += 'Starting Total,Count,Mean Win %,Mean Loss %,Mean Tie %,Total Wins,Total Losses,Total Ties,Total Simulations\n';
     
     // Sort by starting total (4 to 21)
     const sortedTotals = Object.keys(groupedByTotal).map(Number).sort((a, b) => a - b);
@@ -475,7 +485,7 @@ function exportCSV() {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'blackjack-grouped-by-total.csv';
+    a.download = 'blackjack-simulation-complete.csv';
     a.click();
     window.URL.revokeObjectURL(url);
 }
