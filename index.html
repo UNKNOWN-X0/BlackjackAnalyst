@@ -135,11 +135,15 @@
                             </button>
 
                             <div id="progressContainer" class="progress-container" style="display: none;">
-                                <div class="progress-bar">
+                                <div id="simulationProgress" class="progress-bar" role="progressbar" aria-label="Simulation progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                                     <div id="progressFill" class="progress-fill"></div>
                                 </div>
-                                <div id="progressText" class="progress-text">Processing 0%</div>
+                                <div id="progressText" class="progress-text">Analyzing hands — 0%</div>
+                                <div id="progressDetail" class="progress-detail"></div>
+                                <div id="progressTiming" class="progress-detail"></div>
                             </div>
+
+                            <span id="progressAnnouncement" class="sr-only" role="status" aria-live="polite"></span>
 
                             <button id="exportButton" class="export-button" style="display: none;">
                                 <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

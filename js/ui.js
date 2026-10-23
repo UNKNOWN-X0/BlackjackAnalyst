@@ -15,7 +15,7 @@ export function updateUI() {
         runButton.disabled = false;
         runButtonText.textContent = 'Run';
         if (state.results) {
-            progressContainer.style.display = 'none';
+            progressContainer.style.display = 'flex';
             exportButton.style.display = 'flex';
         }
     }
@@ -105,4 +105,41 @@ export function displayResults() {
         `;
         resultsTableBody.appendChild(row);
     });
+}
+
+// Progress is presentation only; round simulation and game rules stay independent.
+export function updateProgress(completed, total, iterations, elapsedMs, finished = false) {
+    const container = document.getElementById('progressContainer');
+    const bar = document.getElementById('simulationProgress');
+    const percent = Math.floor((completed / total) * 100);
+    const formatTime = ms => {
+        const seconds = Math.max(0, Math.round(ms / 1000));
+        if (seconds < 60) return `${seconds}s`;
+        const minutes = Math.floor(seconds / 60);
+        if (minutes < 60) return `${minutes}m ${seconds % 60}s`;
+        return `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
+    };
+
+    container.dataset.complete = String(finished);
+    document.getElementById('progressFill').style.width = `${percent}%`;
+    bar.setAttribute('aria-valuenow', String(percent));
+    bar.setAttribute('aria-valuetext', `${completed.toLocaleString()} of ${total.toLocaleString()} starting hands completed`);
+    document.getElementById('progressText').textContent = finished
+        ? 'Complete — 100%'
+        : completed === total ? 'Preparing results…' : `Analyzing hands — ${percent}%`;
+    document.getElementById('progressDetail').textContent =
+        `${completed.toLocaleString()} / ${total.toLocaleString()} hands · ${iterations.toLocaleString()} rounds per hand`;
+
+    const remaining = completed > 0 && elapsedMs >= 1000
+        ? `About ${formatTime(elapsedMs / completed * (total - completed))} remaining`
+        : 'Estimating time remaining…';
+    document.getElementById('progressTiming').textContent = finished
+        ? `${(total * iterations).toLocaleString()} rounds completed in ${formatTime(elapsedMs)}`
+        : `${formatTime(elapsedMs)} elapsed · ${remaining}`;
+    // Announce only the start and finish, not every visual refresh.
+    if (completed === 0 || finished) {
+        document.getElementById('progressAnnouncement').textContent = finished
+            ? `Simulation complete. ${total.toLocaleString()} starting hands analyzed.`
+            : 'Simulation started.';
+    }
 }

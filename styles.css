@@ -832,3 +832,43 @@ body {
     left: 0;
     color: #d4af37;
 }
+
+/* Simulation progress details */
+.progress-text {
+    color: #e2e8f0;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.progress-detail {
+    color: #94a3b8;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: center;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+}
+
+.progress-container[data-complete="true"] .progress-fill {
+    animation: none;
+    background: #22c55e;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .progress-fill {
+        animation: none;
+        transition: none;
+    }
+}

@@ -1,6 +1,6 @@
 import { state } from './state.js';
 import { generateAllHands, simulateHand } from './simulation.js';
-import { updateUI, displayResults } from './ui.js';
+import { updateUI, displayResults, updateProgress } from './ui.js';
 import { sortResults } from './results.js';
 import { exportCSV } from './csv.js';
 
@@ -23,8 +23,11 @@ async function runSimulation() {
     const fiveCardCharlie = state.gameMode === 'modded';
     
     const handResults = [];
-    const progressFill = document.getElementById('progressFill');
-    const progressText = document.getElementById('progressText');
+    const startedAt = performance.now();
+    let lastUpdate = startedAt;
+    updateProgress(0, allHands.length, actualSimulations, 0);
+    // Let the browser paint the reset state before starting work.
+    await new Promise(resolve => setTimeout(resolve, 0));
     
     for (let i = 0; i < allHands.length; i++) {
         const hand = allHands[i];
@@ -32,12 +35,12 @@ async function runSimulation() {
             hand, actualSimulations, playerThreshold, dealerThreshold, hitSoft17, fiveCardCharlie
         ));
 
-        // Update progress
-        if (i % 10 === 0) {
-            const progress = Math.floor((i / allHands.length) * 100);
-            progressFill.style.width = `${progress}%`;
-            progressText.textContent = `Processing ${progress}% • ${actualSimulations.toLocaleString()} iterations per hand`;
+        // Yield between hands based on time, so large presets update more often.
+        const now = performance.now();
+        if (now - lastUpdate >= 50 || i === allHands.length - 1) {
+            updateProgress(i + 1, allHands.length, actualSimulations, now - startedAt);
             await new Promise(resolve => setTimeout(resolve, 0));
+            lastUpdate = performance.now();
         }
     }
     
@@ -53,8 +56,7 @@ async function runSimulation() {
         )
     };
     
-    progressFill.style.width = '100%';
-    progressText.textContent = `Processing 100% • ${actualSimulations.toLocaleString()} iterations per hand`;
+    updateProgress(allHands.length, allHands.length, actualSimulations, performance.now() - startedAt, true);
     
     state.isRunning = false;
     updateUI();
