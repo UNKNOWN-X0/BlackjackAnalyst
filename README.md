@@ -1,5 +1,8 @@
 # Blackjack Analyst
 
+[![Live demo](https://img.shields.io/badge/Live_demo-Open_app-2ea44f?style=flat)](https://unknown-x0.github.io/BlackjackAnalyst/)
+[![Site CI](https://github.com/UNKNOWN-X0/BlackjackAnalyst/actions/workflows/jekyll-docker.yml/badge.svg?branch=main)](https://github.com/UNKNOWN-X0/BlackjackAnalyst/actions/workflows/jekyll-docker.yml)
+
 **Explore blackjack starting-hand outcomes with Monte Carlo simulation.**
 
 Blackjack Analyst is a browser-based simulator built with vanilla HTML, CSS, and JavaScript. It estimates win, loss, and tie rates for all **1,326 unique two-card combinations** from a single 52-card deck, using configurable player and dealer hit/stand thresholds.
