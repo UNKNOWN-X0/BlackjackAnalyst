@@ -132,3 +132,15 @@ The app is served through GitHub Pages. It is also compatible with other static 
 ## Contributing
 
 Bug reports and focused pull requests are welcome. For a simulation issue, include the selected rules, mode, sample count, and the behavior you expected. For a UI issue, include your browser and reproduction steps.
+
+## Module map
+
+Already separated by responsibility; keep these boundaries:
+
+- `js/app.js`: connects events and the application flow.
+- `js/state.js`: shared state.
+- `js/rules.js`, `js/simulation.js`: game rules and simulation.
+- `js/ui.js`, `js/results.js`: UI and result presentation.
+- `js/csv.js`: exports.
+- `index.html`, `styles.css`: layout and appearance.
+- `tests/core.test.js`: core regression tests (`npm test`).
