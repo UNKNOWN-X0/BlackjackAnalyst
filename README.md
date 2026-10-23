@@ -1,255 +1,131 @@
-# Blackjack Analyst - Probability & Strategy Calculator
+# Blackjack Analyst
 
-A comprehensive Monte Carlo simulation tool for analyzing blackjack starting hand probabilities and optimal strategies.
+**Explore blackjack starting-hand outcomes with Monte Carlo simulation.**
 
-## 🎯 Overview
+Blackjack Analyst is a browser-based simulator built with vanilla HTML, CSS, and JavaScript. It estimates win, loss, and tie rates for all **1,326 unique two-card combinations** from a single 52-card deck, using configurable player and dealer hit/stand thresholds.
 
-Blackjack Analyst uses Monte Carlo simulation to analyze all **1,326 possible starting hand combinations** in blackjack. The tool helps you understand win rates, loss rates, and tie probabilities under different table rules and game modes.
+[**Open the app**](https://unknown-x0.github.io/BlackjackAnalyst/) · [Report an issue](https://github.com/UNKNOWN-X0/BlackjackAnalyst/issues)
 
-## ✨ Features
+## Features
 
-- **Monte Carlo Simulation**: Run 100 to 100,000+ simulations per hand
-- **All Possible Hands**: Analyzes all 1,326 two-card starting combinations
-- **Flexible Rules**: Customize player/dealer stand thresholds and soft 17 rules
-- **Game Modes**:
-  - **Classic**: Standard blackjack rules
-  - **Modded**: Includes 5-Card Charlie rule (automatic win with 5 cards under 21)
-- **Detailed Results**: View win/loss/tie percentages and counts for every hand
-- **Best Hand Identification**: Automatically highlights the highest-performing starting hand
-- **Sortable Data**: Click column headers to sort by any metric
-- **CSV Export**: Export both summary and detailed data for further analysis
+- **Every starting combination:** analyze individual cards and suits, not just hand totals.
+- **Configurable rules:** adjust player and dealer stand thresholds from 12 to 20 and toggle the dealer's soft-hand behavior.
+- **Two modes:** Classic disables Five-Card Charlie; Modded enables it for both player and dealer.
+- **Adjustable sample size:** choose 100, 1,000, 10,000, or 100,000 simulations per starting hand, or enter a custom count.
+- **Interactive results:** compare percentages, outcome counts, visual bars, and the best observed starting hand.
+- **CSV export:** download summaries grouped by starting total plus results for every individual combination.
+- **No build step:** runs in the browser with no runtime dependencies or backend.
 
-## 🚀 Getting Started
+## Quick start
 
-### Local development in VS Code
+### Run locally in VS Code
 
-1. Open this repository folder in VS Code.
-2. Open `index.html` and run **Live Preview: Show Preview** from the Command Palette.
-3. Edit HTML in `index.html`, CSS in `styles.css`, and JavaScript in `js/`.
+Clone the repository, then open its folder in VS Code:
 
-Use an HTTP server (such as Live Preview), rather than opening the HTML with a
-`file://` URL: browser ES modules require HTTP serving. No build step or npm
-package installation is required. GitHub Pages can serve these files directly.
+```sh
+git clone https://github.com/UNKNOWN-X0/BlackjackAnalyst.git
+cd BlackjackAnalyst
+```
 
-### Checks
+With Microsoft's **Live Preview** extension installed, open `index.html` and use **Live Preview: Show Preview** from the Command Palette.
 
-With Node.js 22 or newer installed, run `npm test`. Tests use only Node's built-in
-modules; there are no dependencies to install.
+Alternatively, with Python 3 installed, start a local server from the repository root:
 
-## 📊 How to Use
+```sh
+python3 -m http.server 8000 --bind 127.0.0.1
+```
 
-### 1. Configure Table Rules
+Open [localhost:8000](http://localhost:8000). Stop the server with **Ctrl+C**.
 
-**Player Stands On**: Set when the player stops hitting (default: Hard 17)
-- Options range from Hard 12 to Hard 20
+Serve the project over HTTP: opening `index.html` directly as a `file://` URL can block JavaScript module loading. No `npm install` or build command is needed.
 
-**Dealer Stands On**: Set when the dealer stops hitting (default: 17)
-- Options range from 12 to 20
+### Run an analysis
 
-**Dealer Hits Soft 17**: Toggle whether dealer hits on soft 17
-- Enabled by default (increases house edge slightly)
+1. Set the player and dealer stand thresholds.
+2. Choose **Classic** or **Modded** and set the soft-hand toggle.
+3. Select a simulation count. Start with 100 for a quick check.
+4. Click **Run** and wait for all starting hands to finish.
+5. Click sortable column headers to compare results, then use **Export CSV** to save them.
 
-### 2. Choose Game Mode
+The defaults are player 17, dealer 17, dealer hits soft 17 enabled, Modded mode, and 1,000 simulations per hand.
 
-**Classic Mode**: Traditional blackjack rules
+## Understanding the model
 
-**Modded Mode**: Includes 5-Card Charlie
-- Any 5-card hand that doesn't bust automatically wins
-- Both player and dealer can achieve 5-Card Charlie
+This is a simulator for **fixed threshold strategies**, not an optimal basic-strategy solver. Player decisions depend on the player's total, not the dealer's upcard.
 
-### 3. Set Simulation Count
+Each round starts with a freshly shuffled single deck. The selected starting cards are removed, two cards are dealt to the dealer, and the player and dealer draw according to their configured thresholds. Aces count as 1 or 11 to produce the highest non-busting total.
 
-Choose simulation iterations per hand:
-- **100** - Fast preview
-- **1,000** - Standard accuracy (default)
-- **10,000** - Detailed analysis
-- **100,000** - Maximum precision
-- **Custom** - Enter any amount
+### Current rule behavior
 
-### 4. Run Simulation
+| Rule | Implementation |
+| --- | --- |
+| Player threshold | Hit below the selected total; stand at or above it. This applies to both hard and soft hands despite the UI's “Hard” labels. |
+| Dealer threshold | Hit below the selected total; stand above it. At the threshold, hit a soft hand when the toggle is enabled. |
+| “Dealer Hits Soft 17” toggle | At the default threshold of 17, this means hit soft 17. With another dealer threshold, the toggle applies to a soft hand at that selected total. |
+| Classic mode | Compare totals after checking for busts; Five-Card Charlie is disabled. |
+| Modded mode | A final hand of five or more cards totaling 21 or less qualifies for Charlie. The player is checked first, before the dealer plays. |
+| Charlie timing | Checked after threshold-based drawing finishes; reaching five cards does not itself stop drawing. |
+| Natural blackjack | A two-card 21 is treated as a total of 21, with no special priority or payout. |
 
-1. Click the **"Run"** button
-2. Watch the progress bar as all 1,326 hands are analyzed
-3. Results appear automatically when complete
+Outcome checks occur in this order: player bust → player Charlie → dealer bust → dealer Charlie → compare totals. Equal surviving totals tie.
 
-### 5. Analyze Results
+Splitting, doubling down, surrender, insurance, side bets, dealer peeking, multi-deck shoes, and bankroll or payout calculations are not modeled.
 
-The results table shows for each hand:
-- **Hand**: The two starting cards
-- **Win %**: Percentage of wins
-- **Loss %**: Percentage of losses
-- **Tie %**: Percentage of ties
-- **Win/Loss/Tie #**: Actual counts
-- **Total**: Total simulations run
-- **Visual**: Color-coded bar chart
+## Reading and exporting results
 
-**Click any column header to sort the data!**
+Results are Monte Carlo estimates and vary between runs. Increasing the sample size generally reduces sampling noise but takes longer; the app does not calculate confidence intervals. The “best” hand is the highest observed win rate in that run.
 
-### 6. Export Data
+The count is **per starting hand**: 1,000 simulations means 1,326,000 rounds in total. At 100,000 per hand, the browser performs 132,600,000 rounds. Large runs can be slow because computation runs on the browser's main thread.
 
-Click **"Export CSV"** to download results in CSV format.
+The exported `blackjack-simulation-complete.csv` contains two sections:
 
-The export contains two sections:
+| Section | Contents |
+| --- | --- |
+| Grouped by starting total | Number of combinations, mean win/loss/tie percentages, and summed outcome counts for each total. |
+| Detailed hand data | Individual starting cards, win/loss/tie percentages, counts, and total rounds. |
 
-#### Section 1: Grouped by Starting Total (Summary)
-Aggregated data showing mean percentages for each starting hand value (4-21):
-- Starting Total (e.g., 12, 13, 14...)
-- Count of hand combinations with that total
-- Mean Win/Loss/Tie percentages
-- Total wins, losses, ties, and simulations
+Grouped percentages average the per-hand percentages already rounded to one decimal place. Hands with the same total can have different compositions; the grouped summary combines them. The export includes section headings and blank separators, so import each section separately when a spreadsheet tool expects a single rectangular table.
 
-#### Section 2: Detailed Hand Data
-Complete data for all 1,326 individual hand combinations:
-- Specific cards (e.g., "A♠ K♥")
-- Win/Loss/Tie percentages
-- Win/Loss/Tie counts
-- Total simulations
-
-## 🎲 Simulation Logic
-
-### Monte Carlo Method
-
-For each of the 1,326 possible starting hands:
-1. Remove the starting cards from a fresh deck
-2. Deal two cards to the dealer
-3. Player plays according to the threshold rule
-4. Dealer plays according to their rules
-5. Determine winner
-6. Repeat for the specified number of simulations
-
-**The deck is completely reshuffled between each simulation** to ensure statistical independence.
-
-### Win/Loss/Tie Conditions
-
-**Win**:
-- Player total > Dealer total (both under 22)
-- Dealer busts
-- Player achieves 5-Card Charlie (if enabled)
-
-**Loss**:
-- Player busts
-- Dealer total > Player total (both under 22)
-- Dealer achieves 5-Card Charlie (if enabled)
-
-**Tie**:
-- Player total == Dealer total (both under 22)
-
-### Hand Value Calculation
-
-- Number cards: Face value (2-10)
-- Face cards (J, Q, K): 10 points
-- Ace: 1 or 11 (automatically optimized to highest non-bust value)
-
-### Soft Hands
-
-A hand is "soft" when it contains an Ace counted as 11. The "Dealer Hits Soft 17" rule specifically applies when the dealer has 17 with an Ace counting as 11 (e.g., A-6).
-
-## 📈 Understanding the Results
-
-### Best Performing Hand
-
-The "Best Performing Hand" card shows which starting hand has the highest win rate under your configured rules. Typically, this is a natural blackjack (Ace + 10-value card).
-
-### Starting Total Analysis
-
-Hands are grouped by their starting total (4-21). Generally:
-- **20-21**: Highest win rates (especially blackjack at 21)
-- **17-19**: Good win rates, stand immediately
-- **12-16**: Most challenging ("bust zone")
-- **4-11**: Must hit, but can't bust on next card
-
-### 5-Card Charlie Impact
-
-When enabled, 5-Card Charlie significantly improves win rates for:
-- Lower starting totals (4-11)
-- Hands that would normally require multiple hits
-
-## 🎨 Visual Features
-
-- **Golden theme**: Premium casino aesthetic
-- **Color-coded results**: 
-  - Green for wins
-  - Red for losses
-  - Gray for ties
-- **Interactive table**: Hover effects and sorting
-- **Progress tracking**: Real-time simulation progress
-- **Responsive design**: Works on desktop and mobile
-
-## 📁 File Structure
+## Project structure
 
 ```text
 BlackjackAnalyst/
-├── index.html          # Main HTML structure and module entry point
-├── styles.css          # Styling and animations
+├── index.html          # Page structure and module entry point
+├── styles.css          # Layout, theme, and responsive styling
 ├── js/
-│   ├── app.js          # Event listeners, simulation orchestration, progress
-│   ├── state.js        # Shared settings and result state
-│   ├── rules.js        # Decks, hand values, player/dealer rules
-│   ├── simulation.js   # Round simulation and per-hand statistics
-│   ├── results.js      # Result sorting
-│   ├── ui.js           # Controls, table, and summary rendering
+│   ├── app.js          # Events, simulation orchestration, and progress
+│   ├── state.js        # Settings and current results
+│   ├── rules.js        # Decks, card values, and hit/stand rules
+│   ├── simulation.js   # Starting combinations, rounds, and statistics
+│   ├── results.js      # Table sorting
+│   ├── ui.js           # Controls, summaries, and table rendering
 │   └── csv.js          # CSV generation and download
-├── tests/              # Regression checks
-└── package.json        # ES module declaration and test command
+├── tests/
+│   └── core.test.js    # Core rules, simulation, and CSV checks
+├── .github/workflows/  # Repository automation
+├── .gitignore
+├── package.json        # ES module setting and test command
+└── README.md
 ```
 
-The entry point coordinates modules; simulation and rules do not access the DOM.
-CSV generation is separate from downloading so its output can be tested.
-When requesting AI changes, identify the relevant module and run `npm test`
-before publishing. Preview the site and check the changed interactions as well.
+Rules and simulation logic are independent of the DOM. CSV generation is separate from the download action, making the output easier to verify.
 
+## Development and checks
 
-## 🔧 Technical Details
+Use Node.js 22 or newer to run the existing tests:
 
-- **Total Combinations**: 1,326 (52 choose 2)
-- **Deck Composition**: 52 cards (4 suits × 13 ranks)
-- **Language**: Pure JavaScript (ES6+)
-- **No Dependencies**: No external libraries required
-- **Browser Compatibility**: Modern browsers (Chrome, Firefox, Safari, Edge)
+```sh
+npm test
+```
 
-## 💡 Tips for Best Results
+Tests use Node's built-in test runner; no package installation is required. They cover deck and starting-hand combinations, ace handling, threshold behavior, simulation counts, and CSV output.
 
-1. **Start with 1,000 simulations** for quick initial analysis
-2. **Use 10,000+ simulations** for statistical significance
-3. **Compare different rulesets** to see how they affect probabilities
-4. **Export data** for deeper analysis in spreadsheet software
-5. **Sort by different columns** to discover patterns
+Keep changes focused on the relevant module. After a change, run the tests and preview the app to check controls, progress, sorting, and CSV download. Use a feature branch and pull request to review changes before merging into `main`.
 
-## 📊 Sample Use Cases
+## Hosting
 
-- **Strategy Development**: Find which starting hands perform best
-- **Rule Comparison**: See how different table rules affect outcomes
-- **Educational**: Learn blackjack probabilities and mechanics
-- **Research**: Generate data for statistical analysis
-- **Game Design**: Test variant rules and their impact
+The app is served through GitHub Pages. It is also compatible with other static hosts: publish `index.html`, `styles.css`, and the complete `js/` directory together, preserving their paths. There is no server application or generated build folder.
 
-## ⚠️ Limitations
+## Contributing
 
-- Simulations assume perfect basic strategy for the configured thresholds
-- Does not include:
-  - Splitting pairs
-  - Doubling down
-  - Insurance/side bets
-  - Card counting strategies
-  - Multi-deck shoes (each simulation uses fresh single deck)
-  - Dealer peeking for blackjack
-
-## 🎓 Educational Value
-
-This tool demonstrates:
-- **Probability theory**: Large numbers law and statistical convergence
-- **Monte Carlo methods**: Simulation-based problem solving
-- **Data visualization**: Presenting complex data clearly
-- **Game theory**: Optimal strategy under different rules
-
-## 📝 License
-
-This project is open source and free to use for educational and personal purposes.
-
-## 🤝 Contributing
-
-Feel free to modify and enhance the code for your own needs!
-
----
-
-**Enjoy analyzing blackjack probabilities!** 🃏♠️♥️♣️♦️
+Bug reports and focused pull requests are welcome. For a simulation issue, include the selected rules, mode, sample count, and the behavior you expected. For a UI issue, include your browser and reproduction steps.
