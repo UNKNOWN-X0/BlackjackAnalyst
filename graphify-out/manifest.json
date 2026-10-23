@@ -1,0 +1,80 @@
+{
+  ".github/workflows/jekyll-docker.yml": {
+    "mtime": 1792756476.6890137,
+    "seen": 1792797278.229088,
+    "ast_hash": "29fe146da84567bcc68665ce404ff135",
+    "semantic_hash": "29fe146da84567bcc68665ce404ff135"
+  },
+  ".vscode/settings.json": {
+    "mtime": 1792756476.7047837,
+    "seen": 1792797278.2290921,
+    "ast_hash": "a0a0812dfbdde0e70187a9d105e5994b",
+    "semantic_hash": "a0a0812dfbdde0e70187a9d105e5994b"
+  },
+  "js/app.js": {
+    "mtime": 1792756476.8705177,
+    "seen": 1792797278.229093,
+    "ast_hash": "7fc90318e524b4cb0f1a725e9ed89c47",
+    "semantic_hash": "7fc90318e524b4cb0f1a725e9ed89c47"
+  },
+  "js/csv.js": {
+    "mtime": 1792756476.880435,
+    "seen": 1792797278.2290938,
+    "ast_hash": "dfc0b57f216f08a057cb83a78bd903fd",
+    "semantic_hash": "dfc0b57f216f08a057cb83a78bd903fd"
+  },
+  "js/results.js": {
+    "mtime": 1792756476.8862422,
+    "seen": 1792797278.229095,
+    "ast_hash": "df187abb538175f170ce7ee17f8dfc16",
+    "semantic_hash": "df187abb538175f170ce7ee17f8dfc16"
+  },
+  "js/rules.js": {
+    "mtime": 1792756476.8937664,
+    "seen": 1792797278.229096,
+    "ast_hash": "377f511b1050b478dd88800829c8fc89",
+    "semantic_hash": "377f511b1050b478dd88800829c8fc89"
+  },
+  "js/simulation.js": {
+    "mtime": 1792753485.0658364,
+    "seen": 1792797278.229097,
+    "ast_hash": "c2dc011d069e2a3546150e5e70d701db",
+    "semantic_hash": "c2dc011d069e2a3546150e5e70d701db"
+  },
+  "js/state.js": {
+    "mtime": 1792756476.9034474,
+    "seen": 1792797278.229098,
+    "ast_hash": "c193792dcbb3db4f43f26afd8397ea97",
+    "semantic_hash": "c193792dcbb3db4f43f26afd8397ea97"
+  },
+  "js/ui.js": {
+    "mtime": 1792756476.9134755,
+    "seen": 1792797278.229098,
+    "ast_hash": "ccd32456fdf398566dff7a1c207f3dd5",
+    "semantic_hash": "ccd32456fdf398566dff7a1c207f3dd5"
+  },
+  "package.json": {
+    "mtime": 1792751894.4831839,
+    "seen": 1792797278.229099,
+    "ast_hash": "eac4466cd08b87896717efca363ab05f",
+    "semantic_hash": "eac4466cd08b87896717efca363ab05f"
+  },
+  "tests/core.test.js": {
+    "mtime": 1792756476.964841,
+    "seen": 1792797278.2291,
+    "ast_hash": "190e33b3df0ff6afcc52ff9a9a24e0da",
+    "semantic_hash": "190e33b3df0ff6afcc52ff9a9a24e0da"
+  },
+  "README.md": {
+    "mtime": 1792758296.0706115,
+    "seen": 1792797278.229101,
+    "ast_hash": "78d5a505c376f1fd0764acc5cad8ff76",
+    "semantic_hash": "78d5a505c376f1fd0764acc5cad8ff76"
+  },
+  "index.html": {
+    "mtime": 1792756476.8414972,
+    "seen": 1792797278.2291021,
+    "ast_hash": "7ef193dec263ca96c2dd00fd137bafa1",
+    "semantic_hash": "7ef193dec263ca96c2dd00fd137bafa1"
+  }
+}
