@@ -60,15 +60,15 @@ Each round starts with a freshly shuffled single deck. The selected starting car
 
 ### Current rule behavior
 
-| Rule | Implementation |
-| --- | --- |
-| Player threshold | Hit below the selected total; stand at or above it. This applies to both hard and soft hands despite the UI's “Hard” labels. |
-| Dealer threshold | Hit below the selected total; stand above it. At the threshold, hit a soft hand when the toggle is enabled. |
+| Rule                         | Implementation                                                                                                                                   |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Player threshold             | Hit below the selected total; stand at or above it. This applies to both hard and soft hands despite the UI's “Hard” labels.                     |
+| Dealer threshold             | Hit below the selected total; stand above it. At the threshold, hit a soft hand when the toggle is enabled.                                      |
 | “Dealer Hits Soft 17” toggle | At the default threshold of 17, this means hit soft 17. With another dealer threshold, the toggle applies to a soft hand at that selected total. |
-| Classic mode | Compare totals after checking for busts; Five-Card Charlie is disabled. |
-| Modded mode | A final hand of five or more cards totaling 21 or less qualifies for Charlie. The player is checked first, before the dealer plays. |
-| Charlie timing | Checked after threshold-based drawing finishes; reaching five cards does not itself stop drawing. |
-| Natural blackjack | A two-card 21 is treated as a total of 21, with no special priority or payout. |
+| Classic mode                 | Compare totals after checking for busts; Five-Card Charlie is disabled.                                                                          |
+| Modded mode                  | A final hand of five or more cards totaling 21 or less qualifies for Charlie. The player is checked first, before the dealer plays.              |
+| Charlie timing               | Checked after threshold-based drawing finishes; reaching five cards does not itself stop drawing.                                                |
+| Natural blackjack            | A two-card 21 is treated as a total of 21, with no special priority or payout.                                                                   |
 
 Outcome checks occur in this order: player bust → player Charlie → dealer bust → dealer Charlie → compare totals. Equal surviving totals tie.
 
@@ -82,10 +82,10 @@ The count is **per starting hand**: 1,000 simulations means 1,326,000 rounds in 
 
 The exported `blackjack-simulation-complete.csv` contains two sections:
 
-| Section | Contents |
-| --- | --- |
+| Section                   | Contents                                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------------------------ |
 | Grouped by starting total | Number of combinations, mean win/loss/tie percentages, and summed outcome counts for each total. |
-| Detailed hand data | Individual starting cards, win/loss/tie percentages, counts, and total rounds. |
+| Detailed hand data        | Individual starting cards, win/loss/tie percentages, counts, and total rounds.                   |
 
 Grouped percentages average the per-hand percentages already rounded to one decimal place. Hands with the same total can have different compositions; the grouped summary combines them. The export includes section headings and blank separators, so import each section separately when a spreadsheet tool expects a single rectangular table.
 
