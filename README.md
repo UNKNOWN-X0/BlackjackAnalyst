@@ -21,18 +21,20 @@ Blackjack Analyst uses Monte Carlo simulation to analyze all **1,326 possible st
 
 ## 🚀 Getting Started
 
-### Installation
+### Local development in VS Code
 
-1. Download all three files:
-   - `index.html`
-   - `styles.css`
-   - `script.js`
+1. Open this repository folder in VS Code.
+2. Open `index.html` and run **Live Preview: Show Preview** from the Command Palette.
+3. Edit HTML in `index.html`, CSS in `styles.css`, and JavaScript in `js/`.
 
-2. Place them in the same folder
+Use an HTTP server (such as Live Preview), rather than opening the HTML with a
+`file://` URL: browser ES modules require HTTP serving. No build step or npm
+package installation is required. GitHub Pages can serve these files directly.
 
-3. Open `index.html` in a web browser
+### Checks
 
-No server or dependencies required - runs entirely in your browser!
+With Node.js 22 or newer installed, run `npm test`. Tests use only Node's built-in
+modules; there are no dependencies to install.
 
 ## 📊 How to Use
 
@@ -175,12 +177,27 @@ When enabled, 5-Card Charlie significantly improves win rates for:
 
 ## 📁 File Structure
 
+```text
+BlackjackAnalyst/
+├── index.html          # Main HTML structure and module entry point
+├── styles.css          # Styling and animations
+├── js/
+│   ├── app.js          # Event listeners, simulation orchestration, progress
+│   ├── state.js        # Shared settings and result state
+│   ├── rules.js        # Decks, hand values, player/dealer rules
+│   ├── simulation.js   # Round simulation and per-hand statistics
+│   ├── results.js      # Result sorting
+│   ├── ui.js           # Controls, table, and summary rendering
+│   └── csv.js          # CSV generation and download
+├── tests/              # Regression checks
+└── package.json        # ES module declaration and test command
 ```
-blackjack-analyst/
-├── index.html      # Main HTML structure
-├── styles.css      # All styling and animations
-└── script.js       # Simulation logic and UI control
-```
+
+The entry point coordinates modules; simulation and rules do not access the DOM.
+CSV generation is separate from downloading so its output can be tested.
+When requesting AI changes, identify the relevant module and run `npm test`
+before publishing. Preview the site and check the changed interactions as well.
+
 
 ## 🔧 Technical Details
 
