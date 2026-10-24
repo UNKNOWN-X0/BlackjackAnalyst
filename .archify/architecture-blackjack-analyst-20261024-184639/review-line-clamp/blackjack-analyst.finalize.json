@@ -1,0 +1,410 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "architecture",
+  "quality": "showcase",
+  "startedAt": "2026-10-24T18:41:49.102Z",
+  "specification": {
+    "path": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/candidate.json",
+    "sha256": "7bfca7425e9c74e4566b787787e2d65b5ee77ebd739d53256e31be83dd7065f3",
+    "bytes": 4387
+  },
+  "artifact": {
+    "path": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html",
+    "sha256": "6b12c8dabd3ca00c23026bee51e75a57e25d410f48390cb33b36cd29d052d6b0",
+    "bytes": 824709
+  },
+  "stages": {
+    "validate": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": null,
+      "execution": "embedded-in-deliver",
+      "command": [
+        "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
+        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "deliver",
+        "architecture",
+        "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/candidate.json",
+        "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html",
+        "--quality",
+        "showcase",
+        "--repo-root",
+        "/Users/thanate/Developer/Games/BlackjackAnalyst",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "validate",
+        "specification": {
+          "sha256": "7bfca7425e9c74e4566b787787e2d65b5ee77ebd739d53256e31be83dd7065f3",
+          "bytes": 4387
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "showcase",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 0
+        }
+      }
+    },
+    "deliver": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 425,
+      "command": [
+        "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
+        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "deliver",
+        "architecture",
+        "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/candidate.json",
+        "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html",
+        "--quality",
+        "showcase",
+        "--repo-root",
+        "/Users/thanate/Developer/Games/BlackjackAnalyst",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "ff3a411e-04b2-4fa7-b193-017eb01fd4ac",
+        "ok": true,
+        "command": "deliver",
+        "type": "architecture",
+        "input": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/candidate.json",
+        "output": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html",
+        "specification": {
+          "sha256": "7bfca7425e9c74e4566b787787e2d65b5ee77ebd739d53256e31be83dd7065f3",
+          "bytes": 4387
+        },
+        "artifact": {
+          "sha256": "6b12c8dabd3ca00c23026bee51e75a57e25d410f48390cb33b36cd29d052d6b0",
+          "bytes": 824709
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "showcase",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 0
+        },
+        "evidence": {
+          "verified": true,
+          "repository": "https://github.com/UNKNOWN-X0/BlackjackAnalyst",
+          "revision": "04a49542351f8f932f8c4c42f25498d95f4e4fa1",
+          "references": 13
+        },
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      }
+    },
+    "check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 138,
+      "command": [
+        "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
+        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "check",
+        "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html",
+        "--require-provenance"
+      ],
+      "receipt": {
+        "ok": true,
+        "file": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html",
+        "artifact": {
+          "sha256": "6b12c8dabd3ca00c23026bee51e75a57e25d410f48390cb33b36cd29d052d6b0",
+          "bytes": 824709
+        },
+        "checks": [
+          {
+            "name": "single_svg",
+            "ok": true,
+            "details": [
+              "found 1 <svg> block(s)"
+            ]
+          },
+          {
+            "name": "finite_svg",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "orthogonal_arrows",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "label_route_clearance",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_crossings",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_corridors",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "container_border_runs",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "route_rhythm",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "legend_clearance",
+            "ok": true,
+            "details": []
+          }
+        ],
+        "composition": {
+          "schemaVersion": 1,
+          "profile": "showcase",
+          "status": "pass",
+          "summary": {
+            "errors": 0,
+            "warnings": 0
+          },
+          "metrics": {
+            "properCrossings": 0,
+            "resolvedCrossovers": 0,
+            "ambiguousCorridors": 0,
+            "arrowheadCollisions": 0,
+            "containerBorderRuns": 0,
+            "labelRouteClearanceIssues": 0,
+            "labelCanvasOverflowIssues": 0,
+            "minLabelRouteClearance": 20,
+            "desktopReadabilityIssues": 0,
+            "viewportHeightIssues": 0,
+            "minProjectedNodeTextPx": 7.5,
+            "maxBends": 3,
+            "routesOverSuggestedBends": 1,
+            "maxStretch": 1.154,
+            "routesOverSuggestedStretch": 0,
+            "minSegmentPx": 24,
+            "minInteriorSegmentPx": 53,
+            "shortSegmentCount": 0,
+            "shortEndpointSegmentCount": 0,
+            "shortInteriorSegmentCount": 0,
+            "microSegmentCount": 0
+          },
+          "suggestedLimits": {
+            "bendsPerRelationship": 2,
+            "stretch": 1.35,
+            "segmentPx": 16,
+            "microSegmentPx": 8
+          },
+          "routeReview": {
+            "crossings": [],
+            "detours": [
+              {
+                "relationship": {
+                  "id": "download-csv",
+                  "from": "csv_export",
+                  "to": "csv_file",
+                  "label": "downloads CSV",
+                  "collectionIndex": 7,
+                  "artifactIndex": 8
+                },
+                "bends": 3,
+                "stretch": 1.075,
+                "directCorridorBlockers": [
+                  {
+                    "id": "simulation_engine",
+                    "label": "Rules and simulation",
+                    "box": [
+                      620,
+                      490,
+                      190,
+                      80
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "leadingSpace": {
+            "measured": true,
+            "emptyTopPx": 60,
+            "emptyTopRatio": 0.091,
+            "occupiedTop": 60,
+            "viewBoxTop": 0,
+            "canvasHeight": 658,
+            "typicalNodeHeight": 72,
+            "reviewSuggested": false
+          },
+          "desktopReadability": {
+            "budgetBasis": "recognized-declared-wide",
+            "readerContract": "declared-wide-v1",
+            "availableDiagramWidth": 1201.923076923077,
+            "actualBudgetPx": 1201.923076923077,
+            "actualReaderWidth": 1231.923076923077,
+            "desiredReaderWidth": 1231.923076923077,
+            "viewportCap": 1376,
+            "limit": "source-size",
+            "requestedTargetPx": 7.5,
+            "requestedTargetMet": true,
+            "hardFloorPx": 6,
+            "hardFloorMet": true,
+            "minimumOwner": {
+              "kind": "node",
+              "id": "analyst"
+            },
+            "minimumSourceTextPx": 7.8,
+            "minimumProjectedTextPx": 7.5,
+            "semanticTextCount": 23
+          },
+          "issues": []
+        },
+        "provenance": "current",
+        "deliveryReceiptId": "ff3a411e-04b2-4fa7-b193-017eb01fd4ac"
+      }
+    },
+    "browser-check": {
+      "status": "fail",
+      "exitCode": 1,
+      "durationMs": 42,
+      "command": [
+        "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
+        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "browser-check",
+        "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html",
+        "--json",
+        "--require-provenance",
+        "--out-dir",
+        "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/review-line-clamp"
+      ],
+      "execution": "in-process",
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": false,
+        "command": "browser-check",
+        "evidenceKind": "automated-browser",
+        "status": "fail",
+        "visualReview": "not-requested",
+        "provenance": "current",
+        "deliveryReceiptId": "ff3a411e-04b2-4fa7-b193-017eb01fd4ac",
+        "artifact": {
+          "path": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html",
+          "sha256": "6b12c8dabd3ca00c23026bee51e75a57e25d410f48390cb33b36cd29d052d6b0",
+          "bytes": 824709
+        },
+        "state": {
+          "detail": "read",
+          "motion": "still"
+        },
+        "chrome": {
+          "status": "available",
+          "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        },
+        "diagnostics": [
+          {
+            "code": "viewer/browser-check-runtime",
+            "severity": "error",
+            "message": "browser-check could not complete its Chrome inspection.",
+            "subject": {
+              "artifact": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html"
+            },
+            "evidence": {
+              "reason": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.23.1, libuv 1.51.0, darwin; pid=8726, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+            },
+            "supportedFixes": [
+              "resolve the reported Chrome inspection error, then rerun browser-check"
+            ]
+          }
+        ],
+        "containment": {
+          "status": "fail",
+          "policy": "fit-or-reader-declared-readable-vertical-scroll",
+          "viewports": []
+        },
+        "themeStates": {
+          "status": "fail",
+          "viewports": []
+        },
+        "readability": {
+          "status": "fail",
+          "minimumProjectedNodeTextPx": 6,
+          "viewports": []
+        },
+        "viewerChrome": {
+          "status": "fail",
+          "viewports": []
+        },
+        "captures": {
+          "status": "not-requested",
+          "screenshots": [],
+          "contactSheet": null
+        },
+        "sidecars": {
+          "directory": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/review-line-clamp",
+          "receipt": "blackjack-analyst.browser-check.json",
+          "files": []
+        },
+        "error": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.23.1, libuv 1.51.0, darwin; pid=8726, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+      }
+    }
+  },
+  "browserCheck": {
+    "requested": true,
+    "ran": false
+  },
+  "diagnostics": [
+    {
+      "code": "viewer/browser-check-runtime",
+      "severity": "error",
+      "message": "browser-check could not complete its Chrome inspection.",
+      "subject": {
+        "artifact": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html"
+      },
+      "evidence": {
+        "reason": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.23.1, libuv 1.51.0, darwin; pid=8726, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+      },
+      "supportedFixes": [
+        "resolve the reported Chrome inspection error, then rerun browser-check"
+      ]
+    }
+  ],
+  "evidence": {
+    "receipt": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/review-line-clamp/blackjack-analyst.finalize.json",
+    "summaryReceipt": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/review-line-clamp/blackjack-analyst.finalize-summary.json",
+    "browserCheckReceipt": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/review-line-clamp/blackjack-analyst.browser-check.json"
+  },
+  "visualReview": "not-requested",
+  "failedStage": "browser-check",
+  "finishedAt": "2026-10-24T18:41:49.904Z",
+  "durationMs": 802,
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-24T15:48:29.002Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  }
+}

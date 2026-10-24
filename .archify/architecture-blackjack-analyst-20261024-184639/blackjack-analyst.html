@@ -2246,14 +2246,12 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       white-space: nowrap;
     }
     .diagram-guide-action small {
-      display: -webkit-box;
+      display: block;
       margin-top: 0.18rem;
-      overflow: hidden;
       color: var(--text-faint);
       font-size: 0.5rem;
       line-height: 1.35;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
+      overflow-wrap: anywhere;
     }
     .diagram-guide kbd {
       align-self: start;
@@ -3999,12 +3997,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       .diagram-guide-action {
         min-height: 3.1rem;
         padding: 0.42rem 0.48rem;
-      }
-      .diagram-guide-action small {
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
       }
       .diagram-guide-index {
         width: 1.5rem;
