@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Blackjack Analyst · browser architecture",
+    "locale": "en",
+    "output": ".archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/UNKNOWN-X0/BlackjackAnalyst.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "04a49542351f8f932f8c4c42f25498d95f4e4fa1"
+    }
+  },
+  "components": [
+    {
+      "id": "analyst",
+      "type": "external",
+      "label": "Analyst",
+      "sublabel": "sets rules and runs a study",
+      "pos": [40, 300],
+      "size": [135, 70],
+      "sources": [
+        { "path": "README.md", "line": 45, "end_line": 53 }
+      ]
+    },
+    {
+      "id": "github_pages",
+      "type": "cloud",
+      "label": "GitHub Pages",
+      "sublabel": "static HTML, CSS, and JavaScript",
+      "pos": [300, 60],
+      "size": [180, 70],
+      "sources": [
+        { "path": "README.md", "line": 128, "end_line": 130 }
+      ]
+    },
+    {
+      "id": "browser_ui",
+      "type": "frontend",
+      "label": "Browser interface",
+      "sublabel": "controls, progress, results table",
+      "pos": [300, 270],
+      "size": [190, 80],
+      "sources": [
+        { "path": "index.html", "line": 56, "end_line": 115 },
+        { "path": "index.html", "line": 133, "end_line": 205 },
+        { "path": "index.html", "line": 268, "end_line": 329 }
+      ]
+    },
+    {
+      "id": "app_controller",
+      "type": "frontend",
+      "label": "App controller",
+      "sublabel": "events and in-memory session state",
+      "pos": [620, 270],
+      "size": [190, 80],
+      "sources": [
+        { "path": "js/app.js", "line": 7, "end_line": 29 },
+        { "path": "js/app.js", "line": 85, "end_line": 165 },
+        { "path": "js/state.js", "line": 1, "end_line": 13 }
+      ]
+    },
+    {
+      "id": "csv_export",
+      "type": "frontend",
+      "label": "CSV export",
+      "sublabel": "builds a browser download",
+      "pos": [300, 490],
+      "size": [190, 72],
+      "sources": [
+        { "path": "js/csv.js", "line": 3, "end_line": 78 }
+      ]
+    },
+    {
+      "id": "simulation_engine",
+      "type": "frontend",
+      "label": "Rules and simulation",
+      "sublabel": "in-browser Monte Carlo engine",
+      "pos": [620, 490],
+      "size": [190, 80],
+      "sources": [
+        { "path": "js/simulation.js", "line": 10, "end_line": 78 },
+        { "path": "js/simulation.js", "line": 80, "end_line": 136 },
+        { "path": "js/rules.js", "line": 1, "end_line": 114 }
+      ]
+    },
+    {
+      "id": "csv_file",
+      "type": "external",
+      "label": "Downloaded CSV",
+      "sublabel": "blackjack-simulation-complete.csv",
+      "pos": [1000, 490],
+      "size": [210, 72],
+      "sources": [
+        { "path": "js/csv.js", "line": 69, "end_line": 78 }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "User's browser tab",
+      "wraps": ["browser_ui", "app_controller", "csv_export", "simulation_engine"]
+    }
+  ],
+  "connections": [
+    { "id": "host-page", "from": "github_pages", "to": "browser_ui", "label": "serves page" },
+    { "id": "analyst-input", "from": "analyst", "to": "browser_ui", "label": "uses controls" },
+    { "id": "ui-events", "from": "browser_ui", "to": "app_controller", "label": "DOM events" },
+    { "id": "run-engine", "from": "app_controller", "to": "simulation_engine", "label": "run simulations" },
+    { "id": "engine-outcomes", "from": "simulation_engine", "to": "app_controller", "label": "win/loss/tie rates" },
+    { "id": "update-view", "from": "app_controller", "to": "browser_ui", "label": "updates UI" },
+    { "id": "export-results", "from": "app_controller", "to": "csv_export", "label": "export results" },
+    { "id": "download-csv", "from": "csv_export", "to": "csv_file", "label": "downloads CSV" }
+  ]  ,"cards": [
+    {
+      "dot": "amber",
+      "title": "Interpreting the rates",
+      "items": [
+        "Player decisions use fixed stand thresholds and ignore the dealer up-card; this is not an optimal basic-strategy solver. (README.md:55–59)",
+        "Each starting hand is sampled with freshly shuffled decks; CSV includes grouped means and per-hand rates and counts. (js/simulation.js:17–35, 93–135; js/csv.js:18–64)"
+      ]
+    }
+  ]
+}

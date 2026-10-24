@@ -11,3 +11,6 @@ Rules:
 - Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
 - After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
 - A committed graphify-out/graph.json is rewritten whole on every build, so a large diff to it in a pull request is expected. Do not flag it as churn or suggest skipping the graph rebuild or its hooks.
+## Archify
+
+Use the installed Archify skill when a diagram is useful for this project. Save each artifact under `.archify/<type>-<slug>-<YYYYMMDD-HHMMSS>/` in this project, keeping its candidate, final HTML, and verification evidence with that artifact. Treat the HTML as a snapshot and regenerate it when the represented project facts change. Do not move or rename delivered files because receipts refer to their paths.

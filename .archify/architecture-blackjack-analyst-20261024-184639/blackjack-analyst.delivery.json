@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "338bad0e-0561-49fd-ad19-81bccb81192a",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/candidate.json",
+  "output": "/Users/thanate/Developer/Games/BlackjackAnalyst/.archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html",
+  "specification": {
+    "sha256": "7bfca7425e9c74e4566b787787e2d65b5ee77ebd739d53256e31be83dd7065f3",
+    "bytes": 4387
+  },
+  "artifact": {
+    "sha256": "2a0e6fc26cefeee58cde2c84ac7ff44c5d21eaf8430d580fa85d4803c3c887b6",
+    "bytes": 824929
+  }
+}
