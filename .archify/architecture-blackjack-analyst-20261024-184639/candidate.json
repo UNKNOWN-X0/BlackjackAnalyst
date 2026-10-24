@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "Blackjack Analyst · browser architecture",
+    "title": "Blackjack Analyst Architecture",
     "locale": "en",
     "output": ".archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html",
     "quality_profile": "showcase",
@@ -10,7 +10,7 @@
       "url": "https://github.com/UNKNOWN-X0/BlackjackAnalyst.git",
       "provider": "github",
       "link_mode": "web",
-      "revision": "04a49542351f8f932f8c4c42f25498d95f4e4fa1"
+      "revision": "ce5bada2d3c566edc6138b7492d2ab0fd00aca13"
     }
   },
   "components": [
@@ -18,109 +18,451 @@
       "id": "analyst",
       "type": "external",
       "label": "Analyst",
-      "sublabel": "sets rules and runs a study",
-      "pos": [40, 300],
-      "size": [135, 70],
+      "sublabel": "sets rules and reads estimates",
+      "pos": [
+        40,
+        650
+      ],
+      "size": [
+        130,
+        75
+      ],
       "sources": [
-        { "path": "README.md", "line": 45, "end_line": 53 }
+        {
+          "path": "README.md",
+          "line": 45,
+          "end_line": 53
+        }
       ]
     },
     {
       "id": "github_pages",
       "type": "cloud",
       "label": "GitHub Pages",
-      "sublabel": "static HTML, CSS, and JavaScript",
-      "pos": [300, 60],
-      "size": [180, 70],
+      "sublabel": "static site host",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        150,
+        75
+      ],
       "sources": [
-        { "path": "README.md", "line": 128, "end_line": 130 }
+        {
+          "path": "README.md",
+          "line": 3,
+          "end_line": 4
+        },
+        {
+          "path": "README.md",
+          "line": 128,
+          "end_line": 130
+        }
       ]
     },
     {
-      "id": "browser_ui",
+      "id": "browser_controls",
       "type": "frontend",
-      "label": "Browser interface",
-      "sublabel": "controls, progress, results table",
-      "pos": [300, 270],
-      "size": [190, 80],
+      "label": "Run controls",
+      "sublabel": "thresholds, mode, sample size",
+      "pos": [
+        250,
+        390
+      ],
+      "size": [
+        175,
+        115
+      ],
       "sources": [
-        { "path": "index.html", "line": 56, "end_line": 115 },
-        { "path": "index.html", "line": 133, "end_line": 205 },
-        { "path": "index.html", "line": 268, "end_line": 329 }
+        {
+          "path": "index.html",
+          "line": 36,
+          "end_line": 115
+        },
+        {
+          "path": "index.html",
+          "line": 117,
+          "end_line": 220
+        }
       ]
     },
     {
       "id": "app_controller",
       "type": "frontend",
       "label": "App controller",
-      "sublabel": "events and in-memory session state",
-      "pos": [620, 270],
-      "size": [190, 80],
+      "sublabel": "events, run flow, page state",
+      "tag": "Memory only",
+      "pos": [
+        515,
+        390
+      ],
+      "size": [
+        165,
+        120
+      ],
       "sources": [
-        { "path": "js/app.js", "line": 7, "end_line": 29 },
-        { "path": "js/app.js", "line": 85, "end_line": 165 },
-        { "path": "js/state.js", "line": 1, "end_line": 13 }
+        {
+          "path": "js/app.js",
+          "line": 7,
+          "end_line": 82
+        },
+        {
+          "path": "js/app.js",
+          "line": 85,
+          "end_line": 165
+        },
+        {
+          "path": "js/state.js",
+          "line": 1,
+          "end_line": 13
+        }
       ]
     },
     {
-      "id": "csv_export",
+      "id": "simulation_runner",
+      "type": "backend",
+      "label": "Monte Carlo runner",
+      "sublabel": "1,326 starts × chosen rounds",
+      "pos": [
+        515,
+        630
+      ],
+      "size": [
+        165,
+        115
+      ],
+      "sources": [
+        {
+          "path": "js/simulation.js",
+          "line": 10,
+          "end_line": 78
+        },
+        {
+          "path": "js/simulation.js",
+          "line": 80,
+          "end_line": 136
+        }
+      ]
+    },
+    {
+      "id": "rules_engine",
+      "type": "backend",
+      "label": "Blackjack rules",
+      "sublabel": "deck, values, hit / stand",
+      "pos": [
+        515,
+        890
+      ],
+      "size": [
+        165,
+        115
+      ],
+      "sources": [
+        {
+          "path": "js/rules.js",
+          "line": 1,
+          "end_line": 35
+        },
+        {
+          "path": "js/rules.js",
+          "line": 38,
+          "end_line": 79
+        },
+        {
+          "path": "js/rules.js",
+          "line": 82,
+          "end_line": 114
+        }
+      ]
+    },
+    {
+      "id": "results_view",
       "type": "frontend",
+      "label": "Results view",
+      "sublabel": "progress, sortable table, best hand",
+      "pos": [
+        250,
+        630
+      ],
+      "size": [
+        175,
+        120
+      ],
+      "sources": [
+        {
+          "path": "js/ui.js",
+          "line": 55,
+          "end_line": 117
+        },
+        {
+          "path": "js/ui.js",
+          "line": 120,
+          "end_line": 166
+        },
+        {
+          "path": "index.html",
+          "line": 268,
+          "end_line": 329
+        }
+      ]
+    },
+    {
+      "id": "csv_builder",
+      "type": "backend",
       "label": "CSV export",
-      "sublabel": "builds a browser download",
-      "pos": [300, 490],
-      "size": [190, 72],
+      "sublabel": "grouped rates + hand details",
+      "pos": [
+        250,
+        890
+      ],
+      "size": [
+        165,
+        100
+      ],
       "sources": [
-        { "path": "js/csv.js", "line": 3, "end_line": 78 }
+        {
+          "path": "js/csv.js",
+          "line": 3,
+          "end_line": 66
+        },
+        {
+          "path": "js/csv.js",
+          "line": 69,
+          "end_line": 79
+        }
       ]
     },
     {
-      "id": "simulation_engine",
-      "type": "frontend",
-      "label": "Rules and simulation",
-      "sublabel": "in-browser Monte Carlo engine",
-      "pos": [620, 490],
-      "size": [190, 80],
-      "sources": [
-        { "path": "js/simulation.js", "line": 10, "end_line": 78 },
-        { "path": "js/simulation.js", "line": 80, "end_line": 136 },
-        { "path": "js/rules.js", "line": 1, "end_line": 114 }
-      ]
-    },
-    {
-      "id": "csv_file",
+      "id": "downloaded_csv",
       "type": "external",
       "label": "Downloaded CSV",
       "sublabel": "blackjack-simulation-complete.csv",
-      "pos": [1000, 490],
-      "size": [210, 72],
+      "pos": [
+        250,
+        1080
+      ],
+      "size": [
+        160,
+        90
+      ],
       "sources": [
-        { "path": "js/csv.js", "line": 69, "end_line": 78 }
+        {
+          "path": "js/csv.js",
+          "line": 69,
+          "end_line": 79
+        }
+      ]
+    },
+    {
+      "id": "source_repository",
+      "type": "external",
+      "label": "GitHub repository",
+      "sublabel": "BlackjackAnalyst",
+      "pos": [
+        250,
+        40
+      ],
+      "size": [
+        150,
+        80
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 92,
+          "end_line": 112
+        },
+        {
+          "path": ".github/workflows/jekyll-docker.yml",
+          "line": 1,
+          "end_line": 7
+        }
+      ]
+    },
+    {
+      "id": "github_actions",
+      "type": "cloud",
+      "label": "GitHub Actions",
+      "sublabel": "main push + pull request",
+      "pos": [
+        515,
+        40
+      ],
+      "size": [
+        165,
+        95
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/jekyll-docker.yml",
+          "line": 1,
+          "end_line": 12
+        }
+      ]
+    },
+    {
+      "id": "jekyll_builder",
+      "type": "backend",
+      "label": "Jekyll build container",
+      "sublabel": "jekyll/builder:latest",
+      "pos": [
+        515,
+        185
+      ],
+      "size": [
+        165,
+        95
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/jekyll-docker.yml",
+          "line": 13,
+          "end_line": 19
+        }
       ]
     }
   ],
   "boundaries": [
     {
       "kind": "region",
-      "label": "User's browser tab",
-      "wraps": ["browser_ui", "app_controller", "csv_export", "simulation_engine"]
+      "label": "Browser tab · no application server",
+      "wraps": [
+        "browser_controls",
+        "app_controller",
+        "simulation_runner",
+        "rules_engine",
+        "results_view",
+        "csv_builder"
+      ]
     }
   ],
   "connections": [
-    { "id": "host-page", "from": "github_pages", "to": "browser_ui", "label": "serves page" },
-    { "id": "analyst-input", "from": "analyst", "to": "browser_ui", "label": "uses controls" },
-    { "id": "ui-events", "from": "browser_ui", "to": "app_controller", "label": "DOM events" },
-    { "id": "run-engine", "from": "app_controller", "to": "simulation_engine", "label": "run simulations" },
-    { "id": "engine-outcomes", "from": "simulation_engine", "to": "app_controller", "label": "win/loss/tie rates" },
-    { "id": "update-view", "from": "app_controller", "to": "browser_ui", "label": "updates UI" },
-    { "id": "export-results", "from": "app_controller", "to": "csv_export", "label": "export results" },
-    { "id": "download-csv", "from": "csv_export", "to": "csv_file", "label": "downloads CSV" }
-  ]  ,"cards": [
+    {
+      "id": "pages-serves-controls",
+      "from": "github_pages",
+      "to": "browser_controls",
+      "label": "serves static app"
+    },
+    {
+      "id": "analyst-configures",
+      "from": "analyst",
+      "to": "browser_controls"
+    },
+    {
+      "id": "repo-hosts-pages",
+      "from": "source_repository",
+      "to": "github_pages",
+      "label": "source for hosted app"
+    },
+    {
+      "id": "controls-to-app",
+      "from": "browser_controls",
+      "to": "app_controller",
+      "label": "DOM events"
+    },
+    {
+      "id": "app-runs-simulation",
+      "from": "app_controller",
+      "to": "simulation_runner",
+      "label": "run settings"
+    },
+    {
+      "id": "simulation-returns-outcomes",
+      "from": "simulation_runner",
+      "to": "app_controller",
+      "label": "per-hand outcomes",
+      "fromSide": "right",
+      "toSide": "right",
+      "via": [
+        [
+          765,
+          687.5
+        ],
+        [
+          765,
+          450
+        ]
+      ]
+    },
+    {
+      "id": "simulation-applies-rules",
+      "from": "simulation_runner",
+      "to": "rules_engine",
+      "label": "deals and evaluates rounds"
+    },
+    {
+      "id": "app-updates-results",
+      "from": "app_controller",
+      "to": "results_view",
+      "label": "progress and completed results"
+    },
+    {
+      "id": "results-read",
+      "from": "results_view",
+      "to": "analyst",
+      "label": "reads estimates"
+    },
+    {
+      "id": "app-exports-results",
+      "from": "app_controller",
+      "to": "csv_builder",
+      "label": "exports saved results",
+      "fromSide": "left",
+      "toSide": "right"
+    },
+    {
+      "id": "csv-download",
+      "from": "csv_builder",
+      "to": "downloaded_csv",
+      "label": "browser download"
+    },
+    {
+      "id": "repo-triggers-actions",
+      "from": "source_repository",
+      "to": "github_actions",
+      "label": "main push / PR"
+    },
+    {
+      "id": "actions-builds-jekyll",
+      "from": "github_actions",
+      "to": "jekyll_builder",
+      "label": "Jekyll build"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Starting-hand analysis",
+      "items": [
+        "The app generates all 1,326 unique two-card starts and simulates the selected number of rounds for each, shuffling a single deck each round and removing the starting cards before dealing. (js/simulation.js:17–35, 80–90, 93–136; README.md:8, 17)",
+        "Rates vary between runs. The displayed best hand is the highest observed win rate; no confidence intervals are calculated. (js/app.js:64–70; README.md:77–81)"
+      ]
+    },
     {
       "dot": "amber",
-      "title": "Interpreting the rates",
+      "title": "Rules and model limits",
       "items": [
-        "Player decisions use fixed stand thresholds and ignore the dealer up-card; this is not an optimal basic-strategy solver. (README.md:55–59)",
-        "Each starting hand is sampled with freshly shuffled decks; CSV includes grouped means and per-hand rates and counts. (js/simulation.js:17–35, 93–135; js/csv.js:18–64)"
+        "The player hits below the selected threshold for hard and soft hands and does not use the dealer up-card. The dealer stands above its threshold and hits a soft hand at that threshold when the toggle is enabled. (js/rules.js:82–109; README.md:55–67)",
+        "Modded mode checks Five-Card Charlie after threshold-based drawing; a qualifying player is checked before the dealer acts. Natural blackjack has no special priority or payout. (js/simulation.js:40–76; js/rules.js:112–114; README.md:68–73)",
+        "Splitting, doubling, surrender, insurance, side bets, dealer peeking, multi-deck shoes and payouts are not modeled. (README.md:73–75)"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Results and export",
+      "items": [
+        "Progress yields to the browser between hands, but calculations still use the main thread; 100,000 rounds per hand means 132.6 million rounds and can be slow. (js/app.js:27–57; README.md:79–81)",
+        "CSV has grouped averages and summed counts by starting total, followed by detailed per-hand results. Grouped percentages average the per-hand rates after rounding to one decimal. (js/csv.js:18–66; README.md:83–90)",
+        "The browser creates and downloads the CSV; the app does not save a server-side report. (js/csv.js:69–79; README.md:20)"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Tests and hosting",
+      "items": [
+        "npm test uses Node’s built-in runner to cover deck combinations, ace handling, thresholds, simulation counts and CSV output. The GitHub workflow does not run the tests. (package.json:1–7; tests/core.test.js:1–71; .github/workflows/jekyll-docker.yml:1–19)",
+        "The README says GitHub Pages hosts the static app. The checked-in workflow runs jekyll build --future in Docker for main pushes and pull requests; it has no Pages publish step. (README.md:128–130; .github/workflows/jekyll-docker.yml:1–19)"
       ]
     }
   ]
