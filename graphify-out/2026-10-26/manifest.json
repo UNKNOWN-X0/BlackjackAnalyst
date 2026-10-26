@@ -1,0 +1,230 @@
+{
+  ".github/workflows/jekyll-docker.yml": {
+    "mtime": 1792756476.6890137,
+    "seen": 1792797278.229088,
+    "ast_hash": "29fe146da84567bcc68665ce404ff135",
+    "semantic_hash": "29fe146da84567bcc68665ce404ff135"
+  },
+  ".vscode/settings.json": {
+    "mtime": 1792756476.7047837,
+    "seen": 1792797278.2290921,
+    "ast_hash": "a0a0812dfbdde0e70187a9d105e5994b",
+    "semantic_hash": "a0a0812dfbdde0e70187a9d105e5994b"
+  },
+  "js/app.js": {
+    "mtime": 1792756476.8705177,
+    "seen": 1792797278.229093,
+    "ast_hash": "7fc90318e524b4cb0f1a725e9ed89c47",
+    "semantic_hash": "7fc90318e524b4cb0f1a725e9ed89c47"
+  },
+  "js/csv.js": {
+    "mtime": 1792756476.880435,
+    "seen": 1792797278.2290938,
+    "ast_hash": "dfc0b57f216f08a057cb83a78bd903fd",
+    "semantic_hash": "dfc0b57f216f08a057cb83a78bd903fd"
+  },
+  "js/results.js": {
+    "mtime": 1792756476.8862422,
+    "seen": 1792797278.229095,
+    "ast_hash": "df187abb538175f170ce7ee17f8dfc16",
+    "semantic_hash": "df187abb538175f170ce7ee17f8dfc16"
+  },
+  "js/rules.js": {
+    "mtime": 1792756476.8937664,
+    "seen": 1792797278.229096,
+    "ast_hash": "377f511b1050b478dd88800829c8fc89",
+    "semantic_hash": "377f511b1050b478dd88800829c8fc89"
+  },
+  "js/simulation.js": {
+    "mtime": 1792753485.0658364,
+    "seen": 1792797278.229097,
+    "ast_hash": "c2dc011d069e2a3546150e5e70d701db",
+    "semantic_hash": "c2dc011d069e2a3546150e5e70d701db"
+  },
+  "js/state.js": {
+    "mtime": 1792756476.9034474,
+    "seen": 1792797278.229098,
+    "ast_hash": "c193792dcbb3db4f43f26afd8397ea97",
+    "semantic_hash": "c193792dcbb3db4f43f26afd8397ea97"
+  },
+  "js/ui.js": {
+    "mtime": 1792756476.9134755,
+    "seen": 1792797278.229098,
+    "ast_hash": "ccd32456fdf398566dff7a1c207f3dd5",
+    "semantic_hash": "ccd32456fdf398566dff7a1c207f3dd5"
+  },
+  "package.json": {
+    "mtime": 1792751894.4831839,
+    "seen": 1792797278.229099,
+    "ast_hash": "eac4466cd08b87896717efca363ab05f",
+    "semantic_hash": "eac4466cd08b87896717efca363ab05f"
+  },
+  "tests/core.test.js": {
+    "mtime": 1792756476.964841,
+    "seen": 1792797278.2291,
+    "ast_hash": "190e33b3df0ff6afcc52ff9a9a24e0da",
+    "semantic_hash": "190e33b3df0ff6afcc52ff9a9a24e0da"
+  },
+  "README.md": {
+    "mtime": 1792758296.0706115,
+    "seen": 1792797278.229101,
+    "ast_hash": "78d5a505c376f1fd0764acc5cad8ff76",
+    "semantic_hash": "78d5a505c376f1fd0764acc5cad8ff76"
+  },
+  "index.html": {
+    "mtime": 1792756476.8414972,
+    "seen": 1792797278.2291021,
+    "ast_hash": "7ef193dec263ca96c2dd00fd137bafa1",
+    "semantic_hash": "7ef193dec263ca96c2dd00fd137bafa1"
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.delivery.json": {
+    "mtime": 1792921468.2324774,
+    "seen": 1793022751.617255,
+    "ast_hash": "de017d3a159785022953b9d1b4469167",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/candidate.json": {
+    "mtime": 1792876457.9132898,
+    "seen": 1792876567.095357,
+    "ast_hash": "54f1f69055972672e0ffa548388b2f7c",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-3/blackjack-analyst.browser-check.json": {
+    "mtime": 1792861963.9649909,
+    "seen": 1792876567.09536,
+    "ast_hash": "68ad24c8ada4bba712359a6fd2d437a7",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-3/blackjack-analyst.finalize-summary.json": {
+    "mtime": 1792861963.9899995,
+    "seen": 1792876567.095362,
+    "ast_hash": "428cecf3230789d7ab0ac8597d52d38e",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-3/blackjack-analyst.finalize.json": {
+    "mtime": 1792861963.973574,
+    "seen": 1792876567.095364,
+    "ast_hash": "42d619720e0d7d87de11341f368fbe69",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-5/blackjack-analyst.browser-check.json": {
+    "mtime": 1792876461.6780794,
+    "seen": 1792876567.095365,
+    "ast_hash": "0dfbf672799a50eeb92182479f150058",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-5/blackjack-analyst.finalize-summary.json": {
+    "mtime": 1792876461.7563114,
+    "seen": 1792876567.095367,
+    "ast_hash": "0ac482c0e27eb934fffe8256813a1950",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-5/blackjack-analyst.finalize.json": {
+    "mtime": 1792876461.741241,
+    "seen": 1792876567.095368,
+    "ast_hash": "7af29a025346fb6f1030ecb54d31d2b1",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-5/blackjack-analyst.visual-check.json": {
+    "mtime": 1792876477.2845755,
+    "seen": 1792876567.0953689,
+    "ast_hash": "a5f587e1c60cda41ccd7fdf14710ecf0",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-line-clamp/blackjack-analyst.browser-check.json": {
+    "mtime": 1792867777.4838417,
+    "seen": 1792876567.0953732,
+    "ast_hash": "2c1f9bdd4274b34df9ce8ecf87570810",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-line-clamp/blackjack-analyst.finalize-summary.json": {
+    "mtime": 1792867777.5464602,
+    "seen": 1792876567.095374,
+    "ast_hash": "8147bc8991755a517f1dfc0c75f29745",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-line-clamp/blackjack-analyst.finalize.json": {
+    "mtime": 1792867777.5313232,
+    "seen": 1792876567.095375,
+    "ast_hash": "fa926627c06798d001db5efd206ee280",
+    "semantic_hash": ""
+  },
+  ".claude/settings.json": {
+    "mtime": 1792797216.6969385,
+    "seen": 1792876567.0953758,
+    "ast_hash": "3b541b9935fcf0831355da956f897645",
+    "semantic_hash": ""
+  },
+  ".codex/hooks.json": {
+    "mtime": 1792797216.6246371,
+    "seen": 1792876567.095377,
+    "ast_hash": "005ac71c84af2cae38e255e2b9de2411",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/blackjack-analyst.html": {
+    "mtime": 1792921468.129675,
+    "seen": 1793022751.617287,
+    "ast_hash": "050b85473f764a5f43176d748c4d856a",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-5/blackjack-analyst.visual-check.html": {
+    "mtime": 1792876477.2838104,
+    "seen": 1792876567.0953972,
+    "ast_hash": "bb4946de5616c40673cf74164f4ed62a",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1792868331.155128,
+    "seen": 1792876567.095398,
+    "ast_hash": "1fd840c3868657581070dd0b1de8365e",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1792797216.6964667,
+    "seen": 1792876567.095399,
+    "ast_hash": "67d88e9d0760c3ba54c75dfd9551c1c5",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-5/blackjack-analyst.visual-check.1440x900.dark.png": {
+    "mtime": 1792876477.0397978,
+    "seen": 1792876567.095402,
+    "ast_hash": "3f1f2c762a4f1a98a960f1e4d1d9c379",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-5/blackjack-analyst.visual-check.1440x900.light.png": {
+    "mtime": 1792876476.419536,
+    "seen": 1792876567.095403,
+    "ast_hash": "bbbcd2f4ceb9150c89b41559f4eefb4f",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-5/blackjack-analyst.visual-check.2048x1320.dark.png": {
+    "mtime": 1792876477.2416396,
+    "seen": 1792876567.0954041,
+    "ast_hash": "a47bf804938483315c90bdca0e057cc2",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/review-5/blackjack-analyst.visual-check.2048x1320.light.png": {
+    "mtime": 1792876476.8526864,
+    "seen": 1792876567.0954041,
+    "ast_hash": "77cee4842945610d12724d4be88d38da",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/template-refresh/blackjack-analyst.browser-check.json": {
+    "mtime": 1792921471.0181506,
+    "seen": 1793022751.617273,
+    "ast_hash": "f1e14d2cda5e2207ccf271c071ab7757",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/template-refresh/blackjack-analyst.finalize-summary.json": {
+    "mtime": 1792921471.0873206,
+    "seen": 1793022751.617274,
+    "ast_hash": "a12c10d7211de63da146a56adda231e6",
+    "semantic_hash": ""
+  },
+  ".archify/architecture-blackjack-analyst-20261024-184639/template-refresh/blackjack-analyst.finalize.json": {
+    "mtime": 1792921471.0695086,
+    "seen": 1793022751.617274,
+    "ast_hash": "4ad89f5d83a79fdafecf85f1cc5269d2",
+    "semantic_hash": ""
+  }
+}

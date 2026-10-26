@@ -1,0 +1,5 @@
+# Keep generated artifacts and assistant-only config out of the source graph.
+.archify/
+.claude/
+.codex/
+CLAUDE.md
